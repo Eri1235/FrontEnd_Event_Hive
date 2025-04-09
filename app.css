@@ -18,16 +18,16 @@ body{
 .navbar{
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
 }
 nav{
     flex: 1;
     text-align: right;
-    margin-top: -100px;
+    margin-top: -230px;
 }
 .logo img{
-    margin-top: -60px;
-    margin-left: -252px;
+    margin-top: -100px;
+    margin-left: -150px;
     width: 400px;
 }
 nav ul{
@@ -86,14 +86,14 @@ p{
     flex-basis: 50%;
     min-width: 300px;
     margin-top: -20%;
-    margin-left: -20%;
+    margin-left: -5%;
     
 }
 .col-home img{
-    max-width: 100%;
-    padding: 40px 0;
-    margin-top: 5%;
-    margin-left: 43%;
+    max-width: 70%;
+    padding: 10px 0;
+    margin-top: -7%;
+    margin-left: 31%;
 }
 .col-home h1{
     font-size: 40px;
@@ -104,9 +104,9 @@ p{
     min-width: 300px;
 }
 .col-2 img{
-    max-width: 160%;
+    max-width: 120%;
     padding: 50px 0;
-    margin-left: -350px;
+    margin-left: -150px;
 }
 .col-2 h1{
     font-size: 40px;
@@ -141,11 +141,7 @@ p{
 h1{
     color: #8daa67;
 }
-/*-------ROSA--------/*
 
-
-/*-------ERIKA--------*/
-/*-------minuto 29:25--------*/
 .header .row{
     margin-top: 70px;
 }
@@ -179,7 +175,6 @@ h1{
     padding-left: 25px;
     padding-right: 25px;
 }
-/*-------YAIZA--------*/
 .col-4{
     flex-basis: 25%;
     padding: 10px;
@@ -270,9 +265,6 @@ h4{
     box-shadow: 0 10px 20px 5px #92e9ff;
 
 }
-
-/*-------ERIKA--------*/
-/*-------minuto 46:31--------*/
 /*---------offer--------*/
 .offer{
     background: #464646;
@@ -293,17 +285,15 @@ small{
     font-size: 34px;
     color: #ff523b;
 }
-/*-------ERIKA--------*/
-/*-------minuto 56:01--------*/
+
 .col-3 p{
     font-size: 16px;
     margin: 12px 0;
     color: #777;
 } 
 
-/*----------Yaiza----------*/
+
 /*--------brands-------*/
-/*----------minuto 1:00:11----------*/
 .brands{
     margin: 100px auto;
 }
@@ -317,9 +307,9 @@ small{
 .col-5 img:hover{
     filter: grayscale(0);
     transform: translateY(-5px);
-    box-shadow: 0 20px 20px 0px rgba(124, 124, 124, 0.712);
+    box-shadow: 0 20px 20px 0px rgba(254, 253, 253, 0.712);
 }
-/*------------footerYaiza 1 HORA----------*/
+/*------------footer----------*/
 
 .footer{
     background: #000;
@@ -366,7 +356,7 @@ small{
 .footer-col-4 ul li:hover{
     transform: translateY(-5px);
  }
- .footer-col-4 ul li a:hover{
+.footer-col-4 ul li a:hover{
    color: #fff;
  }
 ul{
@@ -387,8 +377,7 @@ ul{
 .copyright{
     text-align: center;
 }
-/*-------Rosa--------*/
-/*-------minuto 1:11:00--------*/
+
 .menu-icon{
     width: 28px;
     margin-left: 20px;
@@ -410,14 +399,14 @@ ul{
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     overflow: hidden;
     transition: .5s;
 }
 
 .card .front {
     transform: perspective(600px) rotateY(0deg);
-    box-shadow: 0 5px 10px 5px #fafcf551;
+    /*box-shadow: 0 5px 10px 5px #fafcf551;*/
 }
 
 .card .front img {
@@ -434,7 +423,7 @@ ul{
     height: 45px;
     line-height: 45px;
     color: #fff;
-    background: rgba(255, 142, 142, 0.541);
+    /*background: rgba(255, 142, 142, 0.541);*/
     text-align: center;
 }
 
@@ -447,7 +436,7 @@ ul{
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    box-shadow: 0 5px 10px #414141;
+    /*box-shadow: 0 5px 10px #ffffff;*/
 }
 
 .card .back .link {
@@ -477,10 +466,51 @@ ul{
 
 .card:hover .back {
     transform: perspective(600px) rotateY(360deg);
-    box-shadow: 0 10px 60px 5px #ffeb8a;
+    /*box-shadow: 0 10px 60px 5px #ffeb8a;*/
 }
 
 /*-------media query for menu--------*/
+@media (max-width: 1024px) {
+    .logo img {
+        width: 300px;
+    }
+    nav ul li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+    .logo img {
+        width: 200px;
+    }
+    nav {
+        text-align: center;
+        margin-top: 0;
+    }
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 180px;
+    }
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+
 @media only screen and (max-width: 1500px){
     .categories{
         margin-left:-200px;
@@ -510,6 +540,7 @@ ul{
     }
     
 }
+
 
 @media only screen and (max-width: 1000px){
     

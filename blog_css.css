@@ -6,6 +6,9 @@
 }
 /*COLORES
 primer color: #8daa67
+segundo color: #f3f3f3
+tercer color: #464646
+cuarto color: #f7f5a1
 */
 a{
     text-decoration: none;
@@ -17,6 +20,7 @@ body{
     margin: 0px;
     padding: 0px;
     font-family: poppins;
+    background: #464646;
 }
 /*---BLOG-----------------------------*/
 #blog{
@@ -38,7 +42,7 @@ body{
 }
 .blog-heading h3{
     font-size: 2.4rem;
-    color: rgb(51, 51, 51);
+    color: white;
     font-weight: 600;
 }
 .blog-container{
@@ -47,6 +51,27 @@ body{
     align-items: center;
     margin: 20px 0px;
     flex-wrap: wrap;
+}
+.btn{
+    background-color: #80a478;
+    width: 100px;
+    height: 40px;
+    margin: auto;
+    margin-left: 50px;
+    border: 5px solid #80a478;
+}
+.btn a{
+    color: white;
+    font-size: 13px;
+}
+.btn a:hover{
+    color: #80a478;
+}
+.btn:hover{
+    background-color: #f7f5a1;
+    width: 100px;
+    height: 40px;
+    border: 5px solid #f7f5a1;
 }
 .blog-box{
     width: 350px;
@@ -66,7 +91,7 @@ body{
     flex-direction: column;
 }
 .blog-text span{
-    color: red;
+    color: #8daa67;
     font-size: 0.9rem;
 }
 .blog-text .blog-title{
@@ -75,7 +100,7 @@ body{
     color: rgb(51, 51, 51);;
 }
 .blog-text .blog-title:hover{
-    color: red;
+    color: #80a478;
     transition: all ease 0.3s;
 }
 .blog-text p{
@@ -93,7 +118,7 @@ body{
     color: #0f0f0f;
 }
 .blog-text a:hover{
-    color: red;
+    color: #80a478;
     transition: all ease 0.3s;
 }
 @media(max-width:1250px){
