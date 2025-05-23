@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Evento</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Evento</h1>
+        <form onSubmit="editarEvent(event)">
+            <input type="text" id="eventName" placeholder="Nombre del evento..." required>
+            <input type="text" id="eventType" placeholder="Tipo de evento..." required>
+            <input type="date" id="date" placeholder="..." required> 
+            <input type="text" id="eventDuration" placeholder="Duración del evento..." required>
+            <input type="text" id="location" placeholder="Dirección..." required>
+            <input type="text" id="organizerName" placeholder="Nombre del organizador..." required>
+            <input type="text" id="descriptionEvent" placeholder="Descripción..." >
+            <br>
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+        </form>
+    </div>
+    <script>
+
+
+        const urlParams = new URLSearchParams(window.location.search)
+        const idEvent = urlParams.get("id")
+
+        function editarEvent(e){
+            e.preventDefault()
+            const eventName = document.getElementById("eventName").value
+            const eventType = document.getElementById("eventType").value
+            const date = document.getElementById("date").value
+            const eventDuration = document.getElementById("eventDuration").value
+            const location = document.getElementById("location").value
+            const organizerName = document.getElementById("organizerName").value
+            const descriptionEvent = document.getElementById("descriptionEvent").value
+
+            fetch("http://localhost:4050/eventos/" + idEvent,{
+                    method:"PUT",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({eventName,eventType,date,eventDuration,location,organizerName,descriptionEvent})
+                })
+                .then(function(respuestaTextoPlano){
+                    return respuestaTextoPlano.json()
+                })
+                .then(function(data) {
+                    console.log("Datos recibidos:", data); // Ver qué devuelve el backend
+
+                    // Verifica si data.message existe antes de acceder
+                    if (data.message) { //Si exite el data.message lo muestra
+                        Swal.fire({
+                            title: "¡Error!",
+                            text: data.message,
+                            icon: "error"
+                        });
+                    } else { //Si no existe muestra el insertado
+                        Swal.fire({
+                            title: "¡Actualizado!",
+                            text: "Evento editado correctamente",
+                            icon: "success"
+                        }).then(function() {
+                            window.location.href = "index.html";
+                        });
+                    }
+                }).catch(function(error){ //En caso de error
+                    Swal.fire({
+                            title: "¡Error inesperado!",
+                            text: error,
+                            icon: "error"
+                        })
+                })
+        }
+
+         function cargarDetallesEventos(){
+            //Extraemos el parámetro de la queryString "id"
+            //show?id=2 --> Extraemos el valor id=2
+            
+            fetch("http://localhost:4050/eventos/" + idEvent)
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(detalles){
+                document.getElementById("eventName").value = detalles.eventName
+                document.getElementById("eventType").value = detalles.eventType
+                document.getElementById("date").value = detalles.date
+                document.getElementById("eventDuration").value = detalles.eventDuration
+                document.getElementById("location").value = detalles.location
+                document.getElementById("organizerName").value = detalles.organizerName
+                document.getElementById("descriptionEvent").value = detalles.descriptionEvent
+            })
+            .catch(function(error){
+                console.log("Error en detalles", error)
+            })
+
+        }
+
+        cargarDetallesEventos()
+
+        
+    </script>
+</body>
+</html>

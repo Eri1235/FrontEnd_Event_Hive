@@ -1,0 +1,232 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Righteous', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #2e2e2e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: #8daa67;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+  }
+  
+  nav ul li a:hover {
+    color: #a3a04d;
+  }
+  
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 4px;
+    background-color: #8daa67;
+    border-radius: 10px;
+    transition: width 0.3s;
+  }
+  
+  nav ul li a:hover::after {
+    width: 100%;
+  }
+  
+  /* Contenedor principal */
+  .profile-container {
+    width: 90%;
+    max-width: 800px; /* antes estaba en 500px */
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 60px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  /* Tarjeta de perfil */
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Avatar */
+  .avatar-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .avatar-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #8daa67;
+    object-fit: cover;
+  }
+  
+  .upload-btn {
+    margin-top: 8px;
+    display: inline-block;
+    background-color: #8daa67;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+  }
+  
+  .upload-btn:hover {
+    background-color: #739d55;
+  }
+  
+  .upload-label {
+    margin-top: 10px;
+    background-color: #8daa67;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-label:hover {
+    background-color: #739d55;
+    transform: scale(1.03);
+}
+
+.upload-label {
+    margin-top: 10px;
+    background-color: #8daa67;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-label:hover {
+    background-color: #739d55;
+    transform: scale(1.03);
+}
+
+
+  /* Info de usuario */
+  .profile-info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+
+  
+  
+/* Botones */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  #adminButtons {
+    display: none; /* 🔹 Ocultamos por defecto */
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 30px;
+    row-gap: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+#adminButtons button {
+  background-color: #8daa67;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  width: 200px;
+}
+
+#adminButtons button:hover {
+  background-color: #739d55;
+  transform: scale(1.05);
+}
+  
+  .logout {
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    max-width: 180px;
+    width: 100%;
+  }
+  
+  .logout:hover {
+    background-color: #d43f4e;
+    transform: scale(1.05);
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    #adminButtons {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    }
+  
+    #adminButtons button,
+    .logout {
+      width: 100%;
+    }
+  }

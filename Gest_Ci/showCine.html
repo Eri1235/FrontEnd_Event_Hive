@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Cine</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="nombre"></h1>
+        <p class="text">Tipo de evento:</p>
+        <p id="ubicacion"></p>
+
+        <button class="btn-detalles" onclick="window.history.back()">Volver</button>        
+    </div>
+
+    <script>
+        function cargarDetallesCine(){
+            //Extraemos el parámetro de la queryString "id"
+            //show?id=2 --> Extraemos el valor id=2
+            const urlParams = new URLSearchParams(window.location.search)
+            const idCines = urlParams.get("id")
+
+            fetch("http://localhost:4050/cines/" + idCines)
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(detalles){
+                document.getElementById("nombre").innerText = detalles.nombre
+                document.getElementById("ubicacion").innerText = detalles.ubicacion
+         
+               
+            })
+            .catch(function(error){
+                console.log("Error en detalles", error)
+            })
+
+        }
+
+        
+
+
+        cargarDetallesCine()
+    </script>
+
+</body>
+</html>

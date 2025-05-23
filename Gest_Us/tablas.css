@@ -1,0 +1,164 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #464646;
+ /* más suave que #eccbda para combinar con #8daa67 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.container {
+    background: #828d79;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* === TABLAS ACTUALIZADAS === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #d9e5cc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #8daa67; /* verde oliva */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+    color: #464646;
+    transition: background-color 0.3s;
+}
+
+tr:hover td {
+    background-color: #f0f7e9;
+}
+
+/* === BOTONES === */
+button.btn-detalles {
+    background-color: #8daa67;
+    color: white;
+    border: 1px solid #7b9f59;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+button.btn-detalles:hover {
+    background-color: #7b9f59;
+    border-color: #6a8a4d;
+}
+
+button.btn-detalles:active {
+    background-color: #a2d38c;
+    border-color: #5f7c44;
+}
+
+button.btn-detalles:focus {
+    outline: none;
+}
+
+/* === INPUTS === */
+input[type="text"], select, input[type="date"], input[type="email"], input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid #d9e5cc;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #1d1d1f;
+    box-sizing: border-box;
+    transition: border-color 0.3s, background-color 0.3s;
+    outline: none;
+}
+
+input[type="text"]:focus, select:focus, input[type="date"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #8daa67;
+    background-color: #f0f7e9;
+}
+
+input[type="text"]:hover, select:hover, input[type="date"]:hover, input[type="email"]:hover, input[type="password"]:hover {
+    border-color: #8daa67;
+}
+
+/* === TEXTAREAS === */
+textarea {
+    display: flex;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    transition: border-color 0.3s, background-color 0.3s;
+    padding: 12px;
+    font-family: inherit;
+    border: 1px solid #d9e5cc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: #8daa67;
+    background-color: #f0f7e9;
+}
+
+textarea:hover {
+    border-color: #8daa67;
+}
+
+/* === ENLACES === */
+a {
+    text-decoration: none;
+    color: #464646;
+    border-color: #3f3f41;
+}
+
+/* BOTÓN EDITAR (verde más vibrante) */
+button.btn-editar {
+    background-color: #d8aa6f;
+    border-color: #9d9444;
+    color: white;
+}
+
+button.btn-editar:hover {
+    background-color: #a76344;
+    border-color: #8e693e;
+}
+
+/* BOTÓN ELIMINAR (rosa fuerte) */
+button.btn-eliminar {
+    background-color: #e91e63;
+    border-color: #c2185b;
+    color: white;
+}
+
+button.btn-eliminar:hover {
+    background-color: #d81b60;
+    border-color: #ad1457;
+}

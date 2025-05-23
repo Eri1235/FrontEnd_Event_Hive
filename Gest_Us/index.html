@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de usuarios</title>
+    <link rel="stylesheet" href="tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Usuarios</h1>
+        <button 
+        class="btn-detalles" 
+        onclick="window.location.href='newUser.html'">
+        Nuevo Usuario
+     </button>
+
+    <button 
+        class="btn-detalles" 
+        onclick="window.location.href='../perfil.html'">
+       Volver Atras
+     </button>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Perfil</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="usuarios-body">
+                <!-- Cargaremos dinámicamente el contenido JSON (BackEnd) -->
+            </tbody>
+        </table>
+
+
+    </div>
+    
+
+    
+
+    
+
+    <script src="usuario.js"></script>
+</body>
+</html>

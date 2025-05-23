@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+    <link rel="stylesheet" href="tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuevo Usuario</h1>
+        <form onSubmit="crearUsuario(event)">
+            <input type="text" id="user" placeholder="Nombre del usuario..." required>
+            <input type="email" id="email" placeholder="Correo..." required>
+            <select id="profile" name="select" required>
+                <option value="Cliente">Cliente</option>
+                <option value="Organizador" selected>Organizador</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            <input type="password" id="password" placeholder="Contraseña..." required>
+            <input type="checkbox" onclick="myFunction()">Mostrar Contraseña
+            <br>
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+    </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            } 
+
+       function crearUsuario(e){
+    e.preventDefault();
+    const user = document.getElementById("user").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const profile = document.getElementById("profile").value;
+
+    // Primero verificamos si el correo ya existe en la base de datos
+    fetch(`http://localhost:4050/usuarios/verificar/${email}`)
+        .then(respuestaTextoPlano => respuestaTextoPlano.json())
+        .then(data => {
+            console.log("Verificación de correo:", data);
+
+            // Si el backend responde con un mensaje indicando que ya existe
+            if (data.message.includes("Este correo ya está registrado")) {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Este correo ya está registrado en el sistema.",
+                    icon: "error"
+                });
+            } else {
+                // Si el correo no existe, procedemos a registrarlo
+                fetch("http://localhost:4050/usuarios", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user, email, password, profile })
+                })
+                .then(respuestaTextoPlano => respuestaTextoPlano.json())
+                .then(data => {
+                    console.log("Datos recibidos:", data);
+
+                    if (data.message) {
+                        Swal.fire({
+                            title: "Error!",
+                            text: data.message,
+                            icon: "error"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "¡Insertado!",
+                            text: "Usuario creado correctamente",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = "index.html";
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: "¡Error inesperado!",
+                        text: "No se pudo completar el registro.",
+                        icon: "error"
+                    });
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error al verificar el correo:", error);
+            Swal.fire({
+                title: "Error!",
+                text: "Hubo un problema al verificar el correo.",
+                icon: "error"
+            });
+        });
+}
+
+        
+        
+    </script>
+</body>
+</html>

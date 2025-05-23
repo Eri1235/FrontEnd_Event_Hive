@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Evemtp</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuevo Evento</h1>
+        <form onSubmit="crearEvento(event)">
+            <input type="text" id="eventName" placeholder="Nombre del evento..." required>
+            <input type="text" id="eventType" placeholder="Tipo de evento..." required>
+            <input type="date" id="date" placeholder="..." required> <!---ME QUEDÉ AQUÍ-->
+            <input type="text" id="eventDuration" placeholder="Duración del evento..." required>
+            <input type="text" id="location" placeholder="Dirección..." required>
+            <input type="text" id="organizerName" placeholder="Nombre del organizador..." required>
+            <input type="text" id="descriptionEvent" placeholder="Descripción..." >
+            <br>
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+    </div>
+    <script>
+        
+
+        function crearEvento(e){
+            e.preventDefault()
+            const eventName = document.getElementById("eventName").value
+            const eventType = document.getElementById("eventType").value
+            const date = document.getElementById("date").value
+            const eventDuration = document.getElementById("eventDuration").value
+            const location = document.getElementById("location").value
+            const organizerName = document.getElementById("organizerName").value
+            const descriptionEvent = document.getElementById("descriptionEvent").value
+
+            fetch("http://localhost:4050/eventos",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({eventName,eventType,date,eventDuration,location,organizerName,descriptionEvent})
+                }).then(function(respuestaTextoPlano){
+                    return respuestaTextoPlano.json()
+                })
+                .then(function(data) {
+                    console.log("Datos recibidos:", data); // Ver qué devuelve el backend
+                    if (data.message) { 
+                        Swal.fire({
+                            title: "Error!",
+                            text: data.message,
+                            icon: "error"
+                        });
+                    } else { 
+                        Swal.fire({
+                            title: "¡Insertado!",
+                            text: "Evento creado correctamente",
+                            icon: "success"
+                        }).then(function() {
+                            window.location.href = "index.html";
+                        });
+                    }
+                }).catch(function(error){ //En caso de error
+                    Swal.fire({
+                            title: "¡Error inesperado!",
+                            text: error,
+                            icon: "error"
+                        })
+                })
+
+        }
+        
+        
+        
+    </script>
+</body>
+</html>

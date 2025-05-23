@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de cines</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cines</h1>
+        <button 
+        class="btn-detalles" 
+        onclick="window.location.href='newCine.html'">
+        Nuevo Cine
+     </button>
+
+    <button 
+        class="btn-detalles" 
+        onclick="window.location.href='../perfil.html'">
+       Volver Atras
+     </button>
+        <table>
+            <thead>
+                 <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Ubicación</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="cines-body">
+                <!-- Cargaremos dinámicamente el contenido JSON (BackEnd) -->
+            </tbody>
+        </table>
+
+
+    </div>
+    
+
+    
+
+    
+
+    <script src="cines.js"></script>
+</body>
+</html>

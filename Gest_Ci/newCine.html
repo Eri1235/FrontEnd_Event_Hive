@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Cine</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuevo Cine</h1>
+        <form onSubmit="crearCine(event)">
+            <input type="text" id="nombre" placeholder="Nombre del cine..." required>
+            <input type="text" id="ubicacion" placeholder="Ubicación del cine..." required>
+            <br>
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+    </div>
+    <script>
+        
+
+        function crearCine(e){
+            e.preventDefault()
+            const nombre = document.getElementById("nombre").value
+            const ubicacion = document.getElementById("ubicacion").value
+
+            fetch("http://localhost:4050/cines",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({nombre,ubicacion})
+                }).then(function(respuestaTextoPlano){
+                    return respuestaTextoPlano.json()
+                })
+                .then(function(data) {
+                    console.log("Datos recibidos:", data); // Ver qué devuelve el backend
+                    if (data.message) { 
+                        Swal.fire({
+                            title: "Error!",
+                            text: data.message,
+                            icon: "error"
+                        });
+                    } else { 
+                        Swal.fire({
+                            title: "¡Insertado!",
+                            text: "Cine creado correctamente",
+                            icon: "success"
+                        }).then(function() {
+                            window.location.href = "index.html";
+                        });
+                    }
+                }).catch(function(error){ //En caso de error
+                    Swal.fire({
+                            title: "¡Error inesperado!",
+                            text: error,
+                            icon: "error"
+                        })
+                })
+
+        }
+        
+        
+        
+    </script>
+</body>
+</html>

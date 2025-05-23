@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cine</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Cine</h1>
+        <form onSubmit="editarCine(event)">
+            <input type="text" id="nombre" placeholder="Nombre del cine..." required>
+            <input type="text" id="ubicacion" placeholder="Ubicación del cine..." required>
+          
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+        </form>
+    </div>
+    <script>
+
+
+                const urlParams = new URLSearchParams(window.location.search);
+        const idCines = urlParams.get("id");
+
+        // Verificamos que el idCines NO sea null ni undefined
+        if (!idCines) {
+            Swal.fire({
+                title: "¡Error!",
+                text: "No se ha proporcionado un ID válido para el cine.",
+                icon: "error"
+            });
+        } else {
+            cargarDetallesCine();
+        }
+
+        function editarCine(e) {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value;
+            const ubicacion = document.getElementById("ubicacion").value;
+
+            fetch(`http://localhost:4050/cines/${idCines}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nombre, ubicacion })
+            })
+            .then(respuestaTextoPlano => {
+                if (!respuestaTextoPlano.ok) {
+                    throw new Error(`Error en la solicitud: ${respuestaTextoPlano.status}`);
+                }
+                return respuestaTextoPlano.json();
+            })
+            .then(data => {
+                console.log("Datos recibidos:", data);
+
+                if (data.message) {
+                    Swal.fire({
+                        title: "¡Error!",
+                        text: data.message,
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "¡Actualizado!",
+                        text: "Cine editado correctamente",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "index.html";
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error inesperado:", error);
+                Swal.fire({
+                    title: "¡Error inesperado!",
+                    text: error.message || "No se pudo completar la edición.",
+                    icon: "error"
+                });
+            });
+        }
+
+        function cargarDetallesCine() {
+            fetch(`http://localhost:4050/cines/${idCines}`)
+            .then(respuestaTextoPlano => {
+                if (!respuestaTextoPlano.ok) {
+                    throw new Error(`Error en la solicitud: ${respuestaTextoPlano.status}`);
+                }
+                return respuestaTextoPlano.json();
+            })
+            .then(detalles => {
+                document.getElementById("nombre").value = detalles.nombre || "";
+                document.getElementById("ubicacion").value = detalles.ubicacion || "";
+            })
+            .catch(error => {
+                console.error("Error al obtener detalles:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "No se pudo obtener la información del cine.",
+                    icon: "error"
+                });
+            });
+        }
+
+
+        cargarDetallesCine()
+
+        
+    </script>
+</body>
+</html>

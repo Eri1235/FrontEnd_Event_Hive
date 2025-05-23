@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="shortcut icon" href="images/Event-Hive.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- Navegación -->
+  <header class="navbar">
+    <div class="logo">
+    </div>
+    <nav>
+      <ul id="MenuItems">
+        <li><a href="index_regs.html">Inicio</a></li>
+        <li><a href="blog_regs.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Perfil -->
+  <div class="profile-container">
+    <h1>Mi Perfil</h1>
+    <div class="profile-card">
+      <div class="avatar-container">
+        <img id="avatar" src="" alt="Avatar de usuario"/>
+      </div>
+      <button id="changeAvatarBtn" class="upload-btn">Cambiar Foto</button>
+      <div class="profile-info">
+        <p><strong>Nombre:</strong> <span id="username">Juan Pérez</span></p>
+        <p><strong>Email:</strong> <span id="useremail">juanperez@example.com</span></p>
+        <p><strong>Perfil:</strong> <span id="profile">Administrador</span></p>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="buttons-container">
+      <div id="adminButtons" style="display: flex;">
+        <button onclick="window.location.href='Gest_Us/index.html'">Gestionar Usuarios</button>
+        <button onclick="window.location.href='Gest_Ev/index.html'">Gestionar Eventos</button>
+        <button onclick="window.location.href='Gest_Ci/index.html'">Gestionar Cines</button>
+      </div>
+      <button class="logout" onclick="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <script>
+     
+
+  </script>
+
+
+    <script src="perfil.js"></script>
+</body>
+</html>

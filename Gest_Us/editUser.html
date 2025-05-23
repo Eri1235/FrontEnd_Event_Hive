@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Usuario</h1>
+        <form onSubmit="editarUsuario(event)">
+            <input type="text" id="user" placeholder="Nombre del usuario..." required>
+            <input type="email" id="email" placeholder="Correo..." required>
+            <select id="profile" name="select" required>
+                <option value="Cliente">Cliente</option>
+                <option value="Organizador" selected>Organizador</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            <input type="password" id="password" placeholder="Contraseña..." required>
+            <input type="checkbox" onclick="myFunction()">Mostrar Contraseña
+            <br>
+            <br>
+
+            <input type="text" id="foto" placeholder="URL de la foto..." required>
+            <br>
+            <br>
+            <button type="submit" class="btn-detalles">Guardar</button>
+            <button type="button" class="btn-detalles"><a href="index.html">Volver atras</a></button>
+        </form>
+    </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            } 
+
+
+        const urlParams = new URLSearchParams(window.location.search)
+        const idUsuario = urlParams.get("id")
+    function editarUsuario(e){
+        e.preventDefault();
+        const user = document.getElementById("user").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const profile = document.getElementById("profile").value;
+        const foto = document.getElementById("foto").value;
+
+        fetch(`http://localhost:4050/usuarios/usuario/${idUsuario}`)
+            .then(respuestaTextoPlano => respuestaTextoPlano.json())
+            .then(usuarioActual => {
+                fetch(`http://localhost:4050/usuarios/verificar/${email}`)
+                    .then(respuestaTextoPlano => respuestaTextoPlano.json())
+                    .then(data => {
+                        if (data.message.includes("Este correo ya está registrado") && usuarioActual.email !== email) {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Este correo ya está registrado en otro usuario.",
+                                icon: "error"
+                            });
+                        } else {
+                            // 🔹 Ahora incluimos `foto` en la actualización
+                            fetch(`http://localhost:4050/usuarios/usuario/${idUsuario}`, {
+                                method: "PUT",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ user, email, password, profile, foto }) // 🔹 Aquí agregamos `foto`
+                            })
+                            .then(respuestaTextoPlano => respuestaTextoPlano.json())
+                            .then(data => {
+                                if (data.message) {
+                                    Swal.fire({
+                                        title: "¡Error!",
+                                        text: data.message,
+                                        icon: "error"
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "¡Actualizado!",
+                                        text: "Usuario editado correctamente",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.href = "index.html";
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: "¡Error inesperado!",
+                                    text: "No se pudo completar la edición.",
+                                    icon: "error"
+                                });
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al verificar el correo:", error);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Hubo un problema al verificar el correo.",
+                            icon: "error"
+                        });
+                    });
+            })
+            .catch(error => {
+                console.error("Error al obtener datos del usuario:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "No se pudo obtener la información del usuario.",
+                    icon: "error"
+                });
+            });
+    }
+
+    function cargarDetallesUsuario(){
+        fetch(`http://localhost:4050/usuarios/usuario/${idUsuario}`)
+        .then(respuestaTextoPlano => respuestaTextoPlano.json())
+        .then(function(detalles){
+            document.getElementById("user").value = detalles.user;
+            document.getElementById("email").value = detalles.email;
+            document.getElementById("password").value = detalles.password;
+            document.getElementById("profile").value = detalles.profile;
+
+            // 🔹 Verificamos si `foto` es `null` o vacío y usamos una imagen por defecto
+            document.getElementById("foto").value = detalles.foto && detalles.foto !== "null" ? detalles.foto : "images/Event-Hive.png";
+        })
+        .catch(function(error){
+            console.log("Error en detalles", error);
+        });
+    }
+
+cargarDetallesUsuario();
+
+        
+    </script>
+</body>
+</html>

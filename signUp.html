@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incribirse</title>
-    <link rel="stylesheet" href="style_login.css">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="style_signup.css">
     <link rel="shortcut icon" href="images/Event-Hive.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -15,28 +15,38 @@
                 <h1>Explora un catálogo lleno de diversion</h1>
                 <p>Hasta 1000 eventos cerca de ti unete ya.</p>
             </section>
-
         </div>
         <div class="right"> <!--antes del form-->
             <form>
                 <section class="copy">
-                    <h2>Iniciar Sesión</h2>
+                    <h2>Registrarse</h2>
                     <div class="login-container">
-                        <p>¿No tienes una cuenta? <a href="signUp.html"><strong>Registrarse</strong></a></p>
+                        <p>Ya tienes una cuenta? <a href="login.html"><strong>Inicia sesión</strong></a></p>
                     </div>
                 </section>
+                <div class="input-container name">
+                    <label for="fname">Nombre</label>
+                    <input placeholder="Nombre de usuario" id="fname" name="fname" type="text">
+                </div>
                 <div class="input-container email">
                     <label for="email">Email</label>
-                    <input id="email" placeholder="Introduzca su correo..." name="email" type="email">
+                    <input placeholder="Correo electrónico" id="email" name="email" type="email">
                 </div>
                 <div class="input-container password">
                     <label for="password">Password</label>
                     <div class="password-wrapper">
-                        <input id="password" name="password" type="password" placeholder="Debe tener al menos 8 caracteres...">
+                        <input id="password" name="password" type="password" placeholder="Introduzca una contraseña">
                         <button type="button" id="togglePassword">👁 Mostrar</button>
                     </div>
-                </div> 
-                <button id="loginButton" class="signup-btn" type="submit">Iniciar Sesión</button>
+                </div>                
+                <div class="input-container cta">
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        Regístrate para recibir actualizaciones por correo electrónico.
+                    </label>
+                </div>
+                <button id="signupButton" class="signup-btn" type="submit">Registrate</button>
                 <section class="copy-legal">
                     <p><span class="small">
                         Al continuar, usted acepta aceptar nuestro <br> 
@@ -51,6 +61,6 @@
         </div>
     </div>
 
-    <script src="login.js"></script>
+    <script src="signUp.js"></script>
 </body>
 </html>

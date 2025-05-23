@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de eventos</title>
+    <link rel="stylesheet" href="../Gest_Us/tablas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Eventos</h1>
+        <button 
+        class="btn-detalles" 
+        onclick="window.location.href='newEvent.html'">
+        Nuevo Evento
+     </button>
+
+    <button 
+        class="btn-detalles" 
+        onclick="window.location.href='../perfil.html'">
+       Volver Atras
+     </button>
+        <table>
+            <thead>
+                 <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Tipo de evento</th>
+                    <th>Fecha</th>
+                    <th>Localización</th>
+                    <th>Organizador</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="eventos-body">
+                <!-- Cargaremos dinámicamente el contenido JSON (BackEnd) -->
+            </tbody>
+        </table>
+
+
+    </div>
+    
+
+    
+
+    
+
+    <script src="eventos.js"></script>
+</body>
+</html>

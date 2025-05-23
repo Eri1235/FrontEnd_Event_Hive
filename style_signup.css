@@ -42,7 +42,7 @@ a:hover{
     align-items: center;
 }
 .left{
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(FOTOSWEB/blog-image.png);
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(FOTOSWEB/registrarse-fondo.png);
     background-size: cover;
 }
 .left .copy{
@@ -156,6 +156,7 @@ label{
     background: #a3a04d;
     cursor: pointer;
 }
+
 .input-container.password {
     position: relative;
     display: flex;
@@ -199,6 +200,9 @@ label{
     background: #a3a04d;
 }
 
+
+
+
 @media screen and (min-width: 900px) {
     .split-screen{
         flex-direction: row;
@@ -211,9 +215,10 @@ label{
     }
 }
 
+
 /* Oculta la página al inicio con opacidad y desplazamiento */
 body {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
     transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
 }

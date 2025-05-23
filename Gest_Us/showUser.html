@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Usuario</title>
+    <link rel="stylesheet" href="tablas.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="user-usuario"></h1>
+        <hr>
+        <p class="text">Correo:</p>
+        <p id="email-usuario"></p>
+        <hr>
+        <p class="text">Contraseña:</p>
+        <p id="password-usuario"></p>
+        <hr>
+        <p class="text">Perfil:</p>
+        <p id="profile-usuario"></p>
+
+        <button class="btn-detalles" onclick="window.history.back()">Volver</button>        
+    </div>
+
+    <script>
+        function cargarDetallesUsuario(){
+            //Extraemos el parámetro de la queryString "id"
+            //show?id=2 --> Extraemos el valor id=2
+            const urlParams = new URLSearchParams(window.location.search)
+            const idUser = urlParams.get("id")
+
+            fetch("http://localhost:4050/usuarios/usuario/" + idUser)
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(detalles){
+                document.getElementById("user-usuario").innerText = detalles.user
+                document.getElementById("email-usuario").innerText = detalles.email
+                document.getElementById("password-usuario").innerText = detalles.password
+                document.getElementById("profile-usuario").innerText = detalles.profile
+
+            })
+            .catch(function(error){
+                console.log("Error en detalles", error)
+            })
+
+        }
+
+        
+
+
+        cargarDetallesUsuario()
+    </script>
+
+</body>
+</html>
